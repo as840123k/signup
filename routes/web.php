@@ -24,3 +24,6 @@ Route::get('/', function () {
     $date = date('Y年m月d日');
     return view('welcome', compact('name', 'say', 'date'));
 });
+Route::get('/action/create', function () {
+    return view('create');
+})->name('action.create');
