@@ -104,8 +104,10 @@ class ActionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Action::destroy($id);
+        return redirect()->route('action.index');
     }
+    //計數器
     public function updateCounter($id)
     {
         $action = Action::find($id);
