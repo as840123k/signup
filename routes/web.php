@@ -36,3 +36,15 @@ Route::delete('/action/{id}', 'ActionController@destroy')->name('action.destroy'
 Route::get('/signup/create/{id}', 'SignupController@create')->name('signup.create');
 //儲存報名資料
 Route::post('/signup', 'SignupController@store')->name('signup.store');
+
+/*活動，群組路由，符合action規範的可以只寫這行
+Route::resource('action', 'ActionController');
+
+//報名
+Route::group(['prefix' => 'signup'], function () {
+//建立報名資料
+Route::get('/create/{id}', 'SignupController@create')->name('signup.create');
+
+//儲存報名資料
+Route::post('/', 'SignupController@store')->name('signup.store');
+});*/
