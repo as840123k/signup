@@ -11,10 +11,6 @@
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -24,6 +20,9 @@ Route::get('/', function () {
     $date = date('Y年m月d日');
     return view('welcome', compact('name', 'say', 'date'));
 });
-Route::get('/action/create', function () {
-    return view('create');
-})->name('action.create');
+//建立首頁
+Route::get('/action', 'ActionController@index')->name('action.index');
+//建立活動表單
+Route::get('/action/create', 'ActionController@create')->name('action.create');
+
+Route::post('/action', 'ActionController@store')->name('action.store');

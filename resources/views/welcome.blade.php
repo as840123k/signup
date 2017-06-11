@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-歡迎
+這是首頁
 @endsection
