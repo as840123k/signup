@@ -14,15 +14,13 @@
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', function () {
-    $name = '使用者 ';
-    $say  = '嗨！';
-    $date = date('Y年m月d日');
-    return view('welcome', compact('name', 'say', 'date'));
-});
+Route::get('/', 'ActionController@index');
 //建立首頁
 Route::get('/action', 'ActionController@index')->name('action.index');
 //建立活動表單
 Route::get('/action/create', 'ActionController@create')->name('action.create');
 
 Route::post('/action', 'ActionController@store')->name('action.store');
+
+Route::get('/action', 'ActionController@index')->name('action.index');
+Route::get('/action/{id}', 'ActionController@show')->name('action.show');
