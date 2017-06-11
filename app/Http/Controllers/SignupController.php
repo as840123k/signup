@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Signup;
 use Illuminate\Http\Request;
 
 class SignupController extends Controller
@@ -36,7 +37,8 @@ class SignupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $signup = Signup::create($request->all());
+        return redirect()->route('action.show', $signup->action_id);
     }
 
     /**
