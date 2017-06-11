@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
+Route::pattern('id', '[0-9]+');
 
 Auth::routes();
 
@@ -23,4 +24,9 @@ Route::get('/action/create', 'ActionController@create')->name('action.create');
 Route::post('/action', 'ActionController@store')->name('action.store');
 
 Route::get('/action', 'ActionController@index')->name('action.index');
+
 Route::get('/action/{id}', 'ActionController@show')->name('action.show');
+
+Route::get('/action/{id}/edit', 'ActionController@edit')->name('action.edit');
+
+Route::patch('/action/{id}', 'ActionController@update')->name('action.update');

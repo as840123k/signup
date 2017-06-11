@@ -18,7 +18,7 @@ class ActionController extends Controller
     {
         $actions = Action::where('enable', 1)
             ->orderBy('created_at', 'desc')
-            ->paginate(5);
+            ->paginate(5); //每頁5筆資料
         return view('welcome', compact('actions'));
 
     }
@@ -60,7 +60,12 @@ class ActionController extends Controller
      */
     public function show($id)
     {
-        //
+        $this->updateCounter($id);
+        $action          = Action::find($id);
+        $action->content = nl2br($action->content);
+
+        return view('show', compact('action'));
+
     }
 
     /**
@@ -71,7 +76,9 @@ class ActionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $action = Action::find($id);
+        return view('edit', compact('action'));
+
     }
 
     /**
@@ -83,7 +90,10 @@ class ActionController extends Controller
      */
     public function update(ActionRequest $request, $id)
     {
-        //
+        $action = Action::find($id);
+        $action->update($request->all());
+        return redirect()->route('action.show', $id);
+
     }
 
     /**
@@ -96,4 +106,12 @@ class ActionController extends Controller
     {
         //
     }
+    public function updateCounter($id)
+    {
+        $action = Action::find($id);
+        $action->counter += 1;
+        $action->timestamps = false;
+        $action->update(['counter' => $action->counter]);
+    }
+
 }
